@@ -2,6 +2,12 @@
 
 这是一个适用于 [Echo-Live](https://github.com/sheep-realms/Echo-Live) 的简易 WebSocket 服务器。
 
+## 支持情况
+
+该软件仅适用于 Windows 操作系统。
+
+该软件所支持的 Echo-Live 版本尚未发布。
+
 ## 使用方法
 
 ### 安装和运行服务器
