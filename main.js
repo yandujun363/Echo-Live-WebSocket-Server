@@ -2,6 +2,23 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const WebSocket = require('ws');
+const os = require('os');
+
+function getLocalIPAddress() {
+    let list = [];
+    const interfaces = os.networkInterfaces();
+    for (const interfaceName in interfaces) {
+        const addresses = interfaces[interfaceName];
+        for (const addressInfo of addresses) {
+            if (addressInfo.family === 'IPv4' && !addressInfo.internal) {
+                list.unshift(addressInfo.address);
+            }
+        }
+    }
+    return list;
+}
+
+const localIPList = getLocalIPAddress();
 
 let config = {
     home_page: './editor.html',
@@ -11,7 +28,7 @@ let config = {
 try {
     config = JSON.parse(fs.readFileSync('server_config.json', 'utf8'));
 } catch (error) {
-    console.error('Error reading config.json:', error);
+    console.error('Error reading server_config.json:', error);
 }
 
 const server = http.createServer((req, res) => {
@@ -63,6 +80,12 @@ const server = http.createServer((req, res) => {
 server.listen(config.port, () => {
     logOutput(`Server is running at http://127.0.0.1:${config.port}/`, 'success');
     logOutput(`WebSocket server at ws://127.0.0.1:${config.port}/`, 'success');
+    if (localIPList.length > 0) {
+        logOutput('Your LAN IP may be:');
+        localIPList.forEach(e => {
+            logOutput(e);
+        });
+    }
 });
 
 const wss = new WebSocket.Server({ server });
