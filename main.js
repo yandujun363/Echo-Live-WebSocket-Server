@@ -17,11 +17,10 @@ try {
 const server = http.createServer((req, res) => {
     let filePath = '.' + req.url;
     if (filePath === './') {
-        filePath = config.homePage;
+        filePath = config.home_page;
     }
 
     const extname = String(path.extname(filePath)).toLowerCase();
-    console.log(filePath);
     
     const mimeTypes = {
         '.html': 'text/html',
@@ -62,8 +61,8 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(config.port, () => {
-    logOutput(`Server is running at http://localhost:${config.port}/`, 'success');
-    logOutput(`WebSocket server at ws://localhost:${config.port}/`, 'success');
+    logOutput(`Server is running at http://127.0.0.1:${config.port}/`, 'success');
+    logOutput(`WebSocket server at ws://127.0.0.1:${config.port}/`, 'success');
 });
 
 const wss = new WebSocket.Server({ server });
