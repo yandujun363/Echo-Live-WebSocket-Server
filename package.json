@@ -1,0 +1,29 @@
+{
+  "name": "Echo-Live WebSocket Server",
+  "version": "1.0.0",
+  "description": "Echo-Live WebSocket Server",
+  "main": "main.js",
+  "scripts": {
+    "start": "set NODE_ENV=dev&&node main.js",
+    "build": "pkg .",
+    "test": "set NODE_ENV=dev&&node test.js"
+  },
+  "author": "sheep-realms",
+  "license": "GPL-3.0-or-later",
+  "bin": {
+    "your-app": "main.js"
+  },
+  "pkg": {
+    "assets": [
+      "public/**/*"
+    ],
+    "targets": [
+      "node16-win-x64"
+    ],
+    "outputPath": "dist"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "ws": "^8.16.0"
+  }
+}
