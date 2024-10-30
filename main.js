@@ -62,7 +62,8 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(config.port, () => {
-    console.log(`Server is running at http://localhost:${config.port}/`);
+    logOutput(`Server is running at http://localhost:${config.port}/`, 'success');
+    logOutput(`WebSocket server at ws://localhost:${config.port}/`, 'success');
 });
 
 const wss = new WebSocket.Server({ server });
