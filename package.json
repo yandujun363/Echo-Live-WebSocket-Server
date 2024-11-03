@@ -1,6 +1,6 @@
 {
   "name": "Echo-Live WebSocket Server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Echo-Live WebSocket Server",
   "main": "main.js",
   "scripts": {
