@@ -31,3 +31,7 @@
 2. 所有控制面板项 > Windows Defender 防火墙 > 允许应用或功能通过 Windows Defender 防火墙。
 3. 点击 “更改设置” 按钮，这需要管理员权限。
 4. 找到所有名为 “Node.js JavaScript Runtime” 的项目，每个项目左侧和右侧共三个复选框全部勾选。
+
+### 修改配置
+
+您可以在 `server_config.json` 文件中修改服务器的端口号和首页文件地址。
