@@ -8,8 +8,8 @@
     "saveEndpoint": "/api/save",
     "origin": true,
     "logging": {
-        "level": "debug",
-        "consoleOutput": false,
+        "level": "info",
+        "consoleOutput": true,
         "fileOutput": false,
         "filePath": "Echo-Live-WebSocket-Server.log"
     }
