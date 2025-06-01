@@ -1,4 +1,16 @@
 {
-    "home_page": "./editor.html",
-    "port": 3000
+    "host": "localhost",
+    "port": 3000,
+    "ipv6Support": true,
+    "root": "Echo-Live",
+    "index": "editor.html",
+    "WebSocket": "/ws",
+    "saveEndpoint": "/api/save",
+    "origin": true,
+    "logging": {
+        "level": "debug",
+        "consoleOutput": false,
+        "fileOutput": false,
+        "filePath": "Echo-Live-WebSocket-Server.log"
+    }
 }
