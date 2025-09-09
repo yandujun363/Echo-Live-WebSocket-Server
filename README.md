@@ -26,7 +26,7 @@ git clone https://github.com/yandujun363/Echo-Live-WebSocket-Server.git
 ```bash
 mpm install
 ```
-3.修改配置文件的`root`字段为`Echo-Live`的根目录，Windows 用户需要注意路径转义问题，即`root`字段中的路径需要使用双反斜杠`\\`而不是单反斜杠`\`。
+3.修改配置文件的`root`字段为`Echo-Live`的根目录，Windows 用户需要注意路径转义问题，即`root`字段中的路径需要使用双反斜杠`\\`而不是单反斜杠`\`。  
 4.运行服务器
 ```bash
 node main.js
