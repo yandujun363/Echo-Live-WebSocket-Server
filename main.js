@@ -51,6 +51,18 @@ if (config.logging.fileOutput) {
   );
 }
 
+// 将相对路径转换为绝对路径
+if (!path.isAbsolute(config.root)) {
+  config.root = path.join(__dirname, config.root);
+}
+logger.debug(`静态文件根目录: ${config.root}`);
+
+// 检查目录是否存在，如果不存在则创建
+if (!fs.existsSync(config.root)) {
+  logger.warn(`目录不存在，创建目录: ${config.root}`);
+  fs.mkdirSync(config.root, { recursive: true });
+}
+
 function getAllIPs() {
   const interfaces = os.networkInterfaces();
   const ips = new Set();
