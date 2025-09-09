@@ -4,7 +4,8 @@
 
 ## 支持情况
 
-该软件仅适用于 Windows 操作系统。
+该项目的预编译二进制版本支持 win-x64 linux-x64 linux-arm64 三个平台。  
+如果需要在其它平台使用，请直接使用运行源码的方式。
 
 该软件支持 Echo-Live 1.5.5 及以后版本。
 
@@ -12,26 +13,44 @@
 
 ### 安装和运行服务器
 
-1. 前往 [releases](https://github.com/sheep-realms/Echo-Live-WebSocket-Server/releases) 列表下载文件。
-2. 将压缩包内容解压至 Echo-Live 的文件夹中。（如果您需要使用其他设备连接，放在 Echo-Live 的文件夹中是必须的）
-3. 参阅 [Echo-Live 帮助文档](https://sheep-realms.github.io/Echo-Live-Doc/custom/config/)，分别启用编辑器和 Echo-Live 的 WebSocket，默认端口为 `3000`。
-4. 打开解压出来的 `Echo-Live WebSocket Server.exe`，**在防火墙安全警告中勾选 “专用网络” 和 “公共网络”**。这会打开一个控制台窗口，使用时请勿关闭。
-5. 打开 Echo-Live 的编辑器，现在它可以通过 WebSocket 服务器发送消息了，请注意日志输出。
+#### 从预编译二进制版本安装
+前往[Releases](https://github.com/yandujun363/Echo-Live-WebSocket-Server/releases)按照自己的系统下载对应的版本和配置文件，把配置文件放到和二进制文件相同的目录下，修改配置文件的`root`字段为`Echo-Live`的根目录，然后运行二进制文件即可。  
+Windows 用户需要注意路径转义问题，即`root`字段中的路径需要使用双反斜杠`\\`而不是单反斜杠`\`。
 
-### 跨设备连接
+#### 从源码安装
+1.clone项目到本地
+```bash
+git clone https://github.com/yandujun363/Echo-Live-WebSocket-Server.git
+```
+2.安装依赖
+```bash
+mpm install
+```
+3.修改配置文件的`root`字段为`Echo-Live`的根目录，Windows 用户需要注意路径转义问题，即`root`字段中的路径需要使用双反斜杠`\\`而不是单反斜杠`\`。
+4.运行服务器
+```bash
+node main.js
+```
 
-1. 想要跨设备连接，您首先需要获取服务器所在的设备的局域网 IP 地址。请您自行上网搜索您的操作系统如何获取局域网 IP 地址。另外，本程序启动时会在控制台中列出所有可能的局域网 IP 地址，通常第一个 IP 就是您的设备的局域网 IP 地址。
-2. 请注意在配置中为编辑器启用 “自动设置连接地址”，这可以让您方便很多。
-3. 假设您的服务器设备的局域网 IP 地址是 `192.168.0.1`，您设置的服务器端口号是 `3000`，您需要在您的另一台**位于同一网络**（例如连接了同一个 WiFi）的设备（例如手机）通过浏览器访问 `http://192.168.0.1:3000`（输入地址时注意切换到英文键盘）。如果您之前的安装操作正确，您将访问到编辑器。
-4. 局域网地址可能会因与路由器断开连接而发生变化，如果您需要固定局域网地址，同样请您自行搜索。
+#### 配置文件解析
+```json5
+{
+    "host": "localhost", //监听地址设置，localhost则是监听全部地址，如果是域名，则监听域名解析的地址，如果是IP则监听IP地址
+    "port": 3000, //监听端口，如果被占用可以更换为其它端口
+    "ipv6Support": true, //IPv6支持，为true时会监听IPv6地址，为false不会
+    "root": "Echo-Live", //服务的根目录，填写Echo-Live所在的位置，比如/www/Echo-Live，win系统要这样写：D:\\Echo-Live，注意转义
+    "index": "editor.html", //访问/目录返回的界面
+    "WebSocket": "/ws", //WebSocket 连接的基础路径，客户端通过这个路径建立 WebSocket 连接，支持多频道：/ws/channel1， /ws/channel2 等，默认 "global" 频道会广播到所有频道
+    "saveEndpoint": "/api/save", //文件保存 API 的端点路径，客户端通过 POST 请求到这个路径保存配置数据
+    "origin": true, //跨域支持，开启之后允许跨域
+    "logging": {
+        "level": "info", //日志等级 
+        "consoleOutput": true, //是否在控制台输出日志
+        "fileOutput": false, //是否把日志输出到文件
+        "filePath": "Echo-Live-WebSocket-Server.log" //日志文件路径
+    }
+}
+```
 
-### 如果我在防火墙安全警告中忘记勾选了怎么办？
-
-1. 开始菜单 > 搜索 “控制面板” > 打开控制面板。
-2. 所有控制面板项 > Windows Defender 防火墙 > 允许应用或功能通过 Windows Defender 防火墙。
-3. 点击 “更改设置” 按钮，这需要管理员权限。
-4. 找到所有名为 “Node.js JavaScript Runtime” 的项目，每个项目左侧和右侧共三个复选框全部勾选。
-
-### 修改配置
-
-您可以在 `server_config.json` 文件中修改服务器的端口号和首页文件地址。
+#### 远程访问
+如果需要远程访问，请在防火墙中打开对应端口。
