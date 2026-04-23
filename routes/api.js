@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import path from 'path';
-import fs from 'fs';
 import logger from '../logger.js';
 import config from '../config.js';
 import { saveJsonFile, ensureDirectoryExists } from '../utils/file.js';
@@ -37,4 +36,4 @@ router.post(config.saveEndpoint, (req, res) => {
   }
 });
 
-export default router;
+export { router as apiRoutes};

@@ -32,4 +32,4 @@ pages.forEach(page => {
   });
 });
 
-export default router;
+export { router as pageRoutes };

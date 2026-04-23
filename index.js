@@ -8,8 +8,7 @@ import { getAllIPs, isIPv6 } from './utils/network.js';
 import { requestLogger } from './middleware/logging.js';
 import { corsMiddleware } from './middleware/cors.js';
 import { staticMiddleware } from './middleware/static.js';
-import apiRoutes from './routes/api.js';
-import pageRoutes from './routes/pages.js';
+import routes from './routes/index.js';
 import { createWebSocketServer, channelMap } from './websocket/server.js';
 
 const app = express();
@@ -21,9 +20,7 @@ app.use(requestLogger);
 app.use(corsMiddleware);
 app.use(staticMiddleware);
 
-// 路由
-app.use('/', pageRoutes);
-app.use('/', apiRoutes);
+app.use('/', routes);
 
 // 404处理
 app.use((req, res) => {
