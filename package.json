@@ -3,15 +3,15 @@
   "version": "1.1.2",
   "description": "Echo-Live-WebSocket-Server",
   "main": "main.js",
+  "type": "module",
   "scripts": {
-    "start": "set NODE_ENV=dev&&node main.js",
-    "build": "pkg .",
-    "test": "set NODE_ENV=dev&&node test.js"
+    "start": "set NODE_ENV=dev&&node index.js",
+    "build": "pkg ."
   },
   "author": "sheep-realms",
   "license": "GPL-3.0-or-later",
   "bin": {
-    "echo-live-websocket-server": "main.js"
+    "echo-live-websocket-server": "index.js"
   },
   "pkg": {
     "assets": [
