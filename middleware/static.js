@@ -4,7 +4,7 @@ import config from '../config.js';
 import { ensureDirectoryExists } from '../utils/file.js';
 
 // 确保静态文件目录存在
-ensureDirectoryExists(config.root);
+await ensureDirectoryExists(config.root);
 
 export const staticMiddleware = express.static(config.root, {
   setHeaders: (res, path) => {

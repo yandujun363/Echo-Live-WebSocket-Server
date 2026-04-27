@@ -1,4 +1,4 @@
-import { WebSocketServer } from 'ws';
+import { WebSocketServer, WebSocket } from 'ws';
 import logger from '../logger.js';
 import config from '../config.js';
 import { handleMessage } from './handlers.js';
